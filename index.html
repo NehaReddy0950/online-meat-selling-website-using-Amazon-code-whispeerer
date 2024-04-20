@@ -1,0 +1,102 @@
+<html>
+<head>
+<style>
+table, th, td {
+border: 1px solid black;
+}
+
+th, td {
+padding: 15px;
+}
+
+table {
+border-collapse: collapse;
+width: 100%;
+}
+
+tr:nth-child(even) {
+background-color: #f2f2f2;
+}
+
+tr:hover {background-color: #ddd;}
+
+th {
+background-color: #4CAF50;
+color: white;
+}
+</style>
+</head>
+<body>
+
+<h2>Shopping Cart</h2>
+
+<table>
+<tr>
+<th>Item</th>
+<th>Quantity</th>
+<th>Price</th>
+<th>Total</th>
+</tr>
+
+<?php
+// Sample data
+$cart = [
+['Product 1', 1, 99, 99],
+['Product 2', 3, 50, 150],
+['Product 3', 5, 20, 100]
+];
+
+$total = 0;
+
+foreach($cart as $item){
+
+// Calculate item total
+$item_total = $item[1] * $item[2];
+
+// Add to running total
+$total += $item_total;
+
+echo "<tr>";
+echo "<td>" . $item[0] . "</td>";
+echo "<td>" . $item[1] . "</td>";
+echo "<td>" . $item[2] . "</td>";
+echo "<td>" . $item_total . "</td>";
+echo "</tr>";
+
+}
+
+// Calculate discount if total > 2kg
+$discount = 0;
+if($total > 200){
+$discount = 0.1 * $total;
+}
+
+// Calculate payable amount
+$payable = $total - $discount;
+
+echo "<tr>";
+echo "<td>Total</td>";
+echo "<td></td>";
+echo "<td></td>";
+echo "<td>" . $total . "</td>";
+echo "</tr>";
+
+echo "<tr>";
+echo "<td>Discount</td>";
+echo "<td></td>";
+echo "<td></td>";
+echo "<td>" . $discount . "</td>";
+echo "</tr>";
+
+echo "<tr>";
+echo "<td>Payable</td>";
+echo "<td></td>";
+echo "<td></td>";
+echo "<td>" . $payable . "</td>";
+echo "</tr>";
+?>
+
+</table>
+
+</body>
+</html>
